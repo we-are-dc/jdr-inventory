@@ -24,5 +24,6 @@ public interface ToolDAO {
     @Delete
     void delete(Tool tool);
 
-    void deleteAll();
+    @Delete
+    void deleteAll(Tool... tools);
 }

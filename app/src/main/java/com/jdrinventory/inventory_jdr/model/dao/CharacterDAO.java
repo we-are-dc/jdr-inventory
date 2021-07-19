@@ -8,14 +8,17 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.jdrinventory.inventory_jdr.model.data.Character;
+
 import java.util.List;
 
 @Dao
 public interface CharacterDAO {
+
     @Query("SELECT * FROM Character")
     LiveData<List<Character>> getAll();
 
-    @Query("SELECT * FROM Character WHERE characterId IN (:characterIds)")
+    @Query("SELECT * FROM Character WHERE character_id IN (:characterIds)")
     LiveData<List<Character>> loadAllByIds(int[] characterIds);
 
     @Query("SELECT * FROM character WHERE first_name LIKE :first AND last_name LIKE :last LIMIT 1")
@@ -30,5 +33,6 @@ public interface CharacterDAO {
     @Delete
     void delete(Character character);
 
-    void deleteAll();
+    @Delete
+    void deleteAll(Character... characters);
 }

@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Character {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "character_id")
     public long characterId;
 
     @ColumnInfo(name = "first_name")
@@ -21,12 +22,11 @@ public class Character {
     @ColumnInfo(name = "pods_current")
     public int podsCurrent;
 
-    public Character(long characterId, String firstName, String lastName, int podsMax, int podsCurrent) {
-        this.characterId = characterId;
+    public Character(String firstName, String lastName, int podsMax) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.podsMax = podsMax;
-        this.podsCurrent = podsCurrent;
+        this.podsCurrent = 0;
     }
 
     public long getCharacterId() {

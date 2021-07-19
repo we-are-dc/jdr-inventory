@@ -11,7 +11,7 @@ public class CharacterWithTools {
     public Character character;
 
     @Relation(
-            parentColumn = "characterId",
+            parentColumn = "character_id",
             entityColumn = "characterCreatorId"
     )
     public List<Tool> tools;

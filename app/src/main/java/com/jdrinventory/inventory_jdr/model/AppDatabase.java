@@ -13,6 +13,8 @@ import com.jdrinventory.inventory_jdr.model.dao.ToolDAO;
 import com.jdrinventory.inventory_jdr.model.data.Character;
 import com.jdrinventory.inventory_jdr.model.data.Tool;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,7 +27,7 @@ public abstract class AppDatabase extends RoomDatabase {
             .addCallback(
                 new RoomDatabase.Callback() {
                     @Override
-                    public void onCreate(SupportSQLiteDatabase db) {
+                    public void onCreate(@NotNull SupportSQLiteDatabase db) {
                         super.onCreate(db);
 
                         databaseWriteExecutor.execute(() -> {});
