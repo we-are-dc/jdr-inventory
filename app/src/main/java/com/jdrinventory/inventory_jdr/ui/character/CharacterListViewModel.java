@@ -11,16 +11,11 @@ import com.jdrinventory.inventory_jdr.model.repository.CharacterRepository;
 import com.jdrinventory.inventory_jdr.model.data.Character;
 
 public class CharacterListViewModel extends AndroidViewModel {
-    private MutableLiveData<String> mText;
     private CharacterRepository mRepository;
 
     public CharacterListViewModel(Application application) {
         super(application);
         mRepository = new CharacterRepository(application);
-    }
-
-    public CharacterDAO getDAO() {
-        return mRepository.mCharacterDAO;
     }
 
     public LiveData<Character> getCharacter(long characterId) {
@@ -30,5 +25,9 @@ public class CharacterListViewModel extends AndroidViewModel {
     public String getFirstname(long characterId) {
         LiveData<Character> character = this.getCharacter(characterId);
         return character.getValue().getFirstName();
+    }
+
+    public Character findCharacterByName(String first, String last) {
+        return mRepository.findCharacterByName(first, last);
     }
 }

@@ -24,8 +24,9 @@ public interface CharacterDAO {
     @Query("SELECT * FROM Character WHERE character_id IN (:character_ids)")
     LiveData<List<Character>> findCharactersById(long[] character_ids);
 
-    @Query("SELECT * FROM character WHERE first_name LIKE :first AND last_name LIKE :last LIMIT 1")
-    LiveData<Character> findCharacterByName(String first, String last);
+    @Transaction
+    @Query("SELECT * FROM Character WHERE first_name = :first AND last_name = :last LIMIT 1")
+    List<Character> findCharacterByName(String first, String last);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Character character);
