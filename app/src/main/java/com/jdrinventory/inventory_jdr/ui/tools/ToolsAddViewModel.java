@@ -1,13 +1,16 @@
-package com.jdrinventory.inventory_jdr.ui.dashboard;
+package com.jdrinventory.inventory_jdr.ui.tools;
 
+import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-public class DashboardViewModel extends ViewModel {
+public class ToolsAddViewModel extends AndroidViewModel {
     private MutableLiveData<String> mText;
 
-    public DashboardViewModel() {
+    public ToolsAddViewModel(Application application) {
+        super(application);
         mText = new MutableLiveData<>();
         mText.setValue("This is dashboard fragment");
     }

@@ -1,4 +1,4 @@
-package com.jdrinventory.inventory_jdr.ui.character;
+package com.jdrinventory.inventory_jdr.ui.tools;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,16 +14,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.jdrinventory.inventory_jdr.R;
 
-public class CharacterDetailsFragment extends Fragment {
-    private CharacterListFragment CharacterDetailsViewModel;
+public class ToolsAddFragment extends Fragment {
+    private ToolsAddFragment ToolsAddViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        characterDetailsViewModel =
-                new ViewModelProvider(this).get(CharacterDetailsViewModel.class);
+        ToolsAddViewModel =
+                new ViewModelProvider(this).get(com.jdrinventory.inventory_jdr.ui.tools.ToolsAddViewModel.class);
         View root = inflater.inflate(R.layout.character_detail, container, false);
         final TextView textView = root.findViewById(R.id.text_obj);
-        characterDetailsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        ToolsAddViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
