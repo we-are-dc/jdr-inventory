@@ -1,15 +1,22 @@
 package com.jdrinventory.inventory_jdr.ui.character;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.room.util.StringUtil;
 
 import com.jdrinventory.inventory_jdr.R;
 import com.jdrinventory.inventory_jdr.model.data.Character;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class CharacterAddActivity extends AppCompatActivity {
     private CharacterAddViewModel characterAddViewModel;
@@ -35,15 +42,43 @@ public class CharacterAddActivity extends AppCompatActivity {
             new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Character character = new Character(
+                    String[] data = {
                         characterFirstnameInput.getText().toString(),
                         characterLastnameInput.getText().toString(),
-                        Integer.parseInt(characterMaxPodsInput.getText().toString())
-                    );
+                        characterFirstnameInput.getText().toString()
+                    };
 
-                    characterAddViewModel.addCharacter(character);
+                    if (validateData(data)) {
+                        Character character = new Character(
+                            characterFirstnameInput.getText().toString(),
+                            characterLastnameInput.getText().toString(),
+                            Integer.parseInt(characterMaxPodsInput.getText().toString())
+                        );
+                        characterAddViewModel.addCharacter(character);
+                        Toast.makeText(CharacterAddActivity.this, "Personnage créé.", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(CharacterAddActivity.this, CharacterListActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(CharacterAddActivity.this, "Impossible de créer le personnage", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         );
+    }
+
+    private boolean validateData(@NotNull String... data) {
+        boolean isValid = true;
+
+        for (String value:data) {
+            if (
+                value == null ||
+                value.equals("")
+            ) {
+                isValid = false;
+                break;
+            }
+        }
+
+        return isValid;
     }
 }
