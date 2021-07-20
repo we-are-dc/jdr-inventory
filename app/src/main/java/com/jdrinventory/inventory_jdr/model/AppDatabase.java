@@ -19,23 +19,28 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {Character.class, Tool.class}, version = 1, exportSchema = false)
+@Database(
+    entities = {Character.class, Tool.class},
+    version = 1,
+    exportSchema = false
+)
 public abstract class AppDatabase extends RoomDatabase {
 
-    private AppDatabase buildDatabase(Context context) {
-        return Room.databaseBuilder(context, AppDatabase.class, "inventory-database")
+    /*private AppDatabase buildDatabase(Context context) {
+        return Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "inventory-database")
             .addCallback(
                 new RoomDatabase.Callback() {
                     @Override
                     public void onCreate(@NotNull SupportSQLiteDatabase db) {
                         super.onCreate(db);
 
-                        databaseWriteExecutor.execute(() -> {});
+                        databaseWriteExecutor.execute(() -> {
+                        });
                     }
                 }
             )
             .build();
-    }
+    }*/
 
     public abstract CharacterDAO characterDao();
 
@@ -44,16 +49,30 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ToolDAO toolDao();
 
     private static volatile AppDatabase INSTANCE;
-    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(4);
+    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(4);
 
-    static AppDatabase getDatabase(final Context context) {
+    /*static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = INSTANCE.buildDatabase(context);
+                    INSTANCE = INSTANCE.buildDatabase(context.getApplicationContext());
                 }
             }
         }
+        return INSTANCE;
+    }*/
+
+    public static AppDatabase getDatabase(final Context context) {
+        if (INSTANCE == null) {
+            synchronized (AppDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                        AppDatabase.class, "inventory_database")
+                        .build();
+                }
+            }
+        }
+
         return INSTANCE;
     }
 }

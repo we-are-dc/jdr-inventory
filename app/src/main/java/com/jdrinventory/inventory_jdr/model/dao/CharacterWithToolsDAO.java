@@ -7,7 +7,6 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 
 import com.jdrinventory.inventory_jdr.model.data.CharacterWithTools;
-import com.jdrinventory.inventory_jdr.model.data.Character;
 
 import java.util.List;
 
@@ -15,12 +14,12 @@ import java.util.List;
 public interface CharacterWithToolsDAO {
     @Transaction
     @Query("SELECT * FROM Character WHERE character_id = :characterId")
-    public LiveData<CharacterWithTools> getCharacterWithTools(int characterId);
+    public LiveData<CharacterWithTools> getCharacterWithTools(long characterId);
 
     @Transaction
     @Query("SELECT * FROM Character")
     public LiveData<List<CharacterWithTools>> getCharactersWithTools();
 
     @Delete
-    void deleteAll(Character... characters);
+    void delete(CharacterWithTools characterWithTools);
 }
