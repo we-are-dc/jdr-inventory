@@ -13,7 +13,7 @@ import java.util.List;
 public class CharacterWithToolsRepository {
     private CharacterWithToolsDAO mCharacterWithToolsDAO;
 
-    CharacterWithToolsRepository(Application application) {
+    public CharacterWithToolsRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         mCharacterWithToolsDAO = db.characterWithToolsDao();
     }
@@ -24,11 +24,5 @@ public class CharacterWithToolsRepository {
 
     LiveData<List<CharacterWithTools>> getCharactersWithTools() {
         return mCharacterWithToolsDAO.getCharactersWithTools();
-    }
-
-    void delete(CharacterWithTools characterWithTools) {
-        AppDatabase.databaseWriteExecutor.execute(() -> {
-            mCharacterWithToolsDAO.delete(characterWithTools);
-        });
     }
 }

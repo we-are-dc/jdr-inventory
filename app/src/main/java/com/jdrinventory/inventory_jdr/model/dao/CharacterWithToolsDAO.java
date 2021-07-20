@@ -19,7 +19,4 @@ public interface CharacterWithToolsDAO {
     @Transaction
     @Query("SELECT * FROM Character")
     public LiveData<List<CharacterWithTools>> getCharactersWithTools();
-
-    @Delete
-    void delete(CharacterWithTools characterWithTools);
 }

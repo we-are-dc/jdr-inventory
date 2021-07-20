@@ -39,4 +39,8 @@ public interface CharacterDAO {
     @Transaction
     @Query("DELETE FROM Character")
     void deleteAll();
+
+    @Transaction
+    @Query("SELECT * FROM Character WHERE character_id = :character_id")
+    LiveData<Character> getCharacter(long character_id);
 }

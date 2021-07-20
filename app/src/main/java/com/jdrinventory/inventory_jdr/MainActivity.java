@@ -10,6 +10,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Define the starting activity for the application
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.character_list);
     }
 }

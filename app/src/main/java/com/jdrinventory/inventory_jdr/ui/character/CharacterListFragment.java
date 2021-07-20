@@ -1,8 +1,10 @@
 package com.jdrinventory.inventory_jdr.ui.character;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,22 +14,30 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.jdrinventory.inventory_jdr.R;
+import com.jdrinventory.inventory_jdr.model.data.Character;
+import com.jdrinventory.inventory_jdr.model.repository.CharacterRepository;
 
 public class CharacterListFragment extends Fragment{
-    private CharacterListFragment CharacterDetailsViewModel;
+    private CharacterListViewModel characterListViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        CharacterDetailsViewModel =
-                new ViewModelProvider(this).get(CharacterDetailsViewModel.class);
+    public View onCreateView(
+        @NonNull LayoutInflater inflater,
+        ViewGroup container,
+        Bundle savedInstanceState
+        // Character character
+    ) {
+        this.characterListViewModel = new ViewModelProvider(this)
+            .get(CharacterListViewModel.class);
+
+
+        Character character = new Character("Jean", "Valjean", 100);
+        Log.i("meeeeeeeerde", character.getFirstName());
+        this.characterListViewModel.getDAO().insert(character);
+
         View root = inflater.inflate(R.layout.character_list, container, false);
-        final TextView textView = root.findViewById(R.id.text_obj);
-        CharacterDetailsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        // this.character = character;
+
+
         return root;
     }
 }

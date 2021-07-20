@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Inventory_JDR</string>
+
+    # Character form
+    <string name="character_firstname">Prénom du personnage</string>
+    <string name="character_lastname">Nom du personnage</string>
+    <string name="character_max_pods">Encombrement maximum</string>
+    <string name="character_submit_button">Encombrement maximum</string>
+
+    # Character detail
+    <string name="character_details_title">Inventaire</string>
+    <string name="character_details_add_tool">Ajouter un objet</string>
 </resources>

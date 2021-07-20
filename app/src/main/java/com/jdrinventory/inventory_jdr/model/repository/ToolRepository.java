@@ -13,7 +13,7 @@ import java.util.List;
 public class ToolRepository {
     private ToolDAO mToolDAO;
 
-    ToolRepository(Application application) {
+    public ToolRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         mToolDAO = db.toolDao();
     }

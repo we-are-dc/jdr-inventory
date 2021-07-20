@@ -15,20 +15,17 @@ import androidx.lifecycle.ViewModelProvider;
 import com.jdrinventory.inventory_jdr.R;
 
 public class ToolsAddFragment extends Fragment {
-    private ToolsAddFragment ToolsAddViewModel;
+    private ToolsAddFragment toolsAddViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        ToolsAddViewModel =
-                new ViewModelProvider(this).get(com.jdrinventory.inventory_jdr.ui.tools.ToolsAddViewModel.class);
+    public View onCreateView(
+        @NonNull LayoutInflater inflater,
+        ViewGroup container,
+        Bundle savedInstanceState
+    ) {
+        ToolsAddViewModel toolsAddViewModel = new ViewModelProvider(this).get(ToolsAddViewModel.class);
+
         View root = inflater.inflate(R.layout.character_detail, container, false);
-        final TextView textView = root.findViewById(R.id.text_obj);
-        ToolsAddViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
         return root;
     }
 }

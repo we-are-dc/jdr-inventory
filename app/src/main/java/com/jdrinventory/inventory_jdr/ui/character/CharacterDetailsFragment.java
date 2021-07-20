@@ -17,18 +17,16 @@ import com.jdrinventory.inventory_jdr.R;
 public class CharacterDetailsFragment extends Fragment {
     private CharacterListFragment CharacterDetailsViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        characterDetailsViewModel =
+    public View onCreateView(
+        @NonNull LayoutInflater inflater,
+        ViewGroup container,
+        Bundle savedInstanceState
+    ) {
+        CharacterDetailsViewModel characterDetailsViewModel =
                 new ViewModelProvider(this).get(CharacterDetailsViewModel.class);
+
         View root = inflater.inflate(R.layout.character_detail, container, false);
-        final TextView textView = root.findViewById(R.id.text_obj);
-        characterDetailsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
         return root;
     }
 }

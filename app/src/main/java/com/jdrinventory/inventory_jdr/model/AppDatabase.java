@@ -26,7 +26,7 @@ import java.util.concurrent.Executors;
 )
 public abstract class AppDatabase extends RoomDatabase {
 
-    /*private AppDatabase buildDatabase(Context context) {
+    public static AppDatabase buildDatabase(Context context) {
         return Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "inventory-database")
             .addCallback(
                 new RoomDatabase.Callback() {
@@ -40,7 +40,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 }
             )
             .build();
-    }*/
+    }
 
     public abstract CharacterDAO characterDao();
 
@@ -51,18 +51,18 @@ public abstract class AppDatabase extends RoomDatabase {
     private static volatile AppDatabase INSTANCE;
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(4);
 
-    /*static AppDatabase getDatabase(final Context context) {
+    public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = INSTANCE.buildDatabase(context.getApplicationContext());
+                    INSTANCE = AppDatabase.buildDatabase(context.getApplicationContext());
                 }
             }
         }
         return INSTANCE;
-    }*/
+    }
 
-    public static AppDatabase getDatabase(final Context context) {
+    /*public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
@@ -74,5 +74,5 @@ public abstract class AppDatabase extends RoomDatabase {
         }
 
         return INSTANCE;
-    }
+    }*/
 }

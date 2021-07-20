@@ -11,44 +11,48 @@ import com.jdrinventory.inventory_jdr.model.data.Character;
 import java.util.List;
 
 public class CharacterRepository {
-    private CharacterDAO mCharacterDAO;
+    public CharacterDAO mCharacterDAO;
 
-    CharacterRepository(Application application) {
+    public CharacterRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         mCharacterDAO = db.characterDao();
     }
 
-    LiveData<List<Character>> getAllCharacters() {
+    public LiveData<List<Character>> getAllCharacters() {
         return mCharacterDAO.getAllCharacters();
     }
 
-    LiveData<List<Character>> findCharactersById(long[] characterIds) {
+    public LiveData<List<Character>> findCharactersById(long[] characterIds) {
         return mCharacterDAO.findCharactersById(characterIds);
     }
 
-    LiveData<Character> findCharacterByName(String first, String last) {
+    public LiveData<Character> getCharacter(long characterId) {
+        return mCharacterDAO.getCharacter(characterId);
+    }
+
+    public LiveData<Character> findCharacterByName(String first, String last) {
         return mCharacterDAO.findCharacterByName(first, last);
     }
 
-    void insert(Character character) {
+    public void insert(Character character) {
         AppDatabase.databaseWriteExecutor.execute(() -> {
             mCharacterDAO.insert(character);
         });
     }
 
-    void update(Character character) {
+    public void update(Character character) {
         AppDatabase.databaseWriteExecutor.execute(() -> {
             mCharacterDAO.update(character);
         });
     }
 
-    void delete(Character character) {
+    public void delete(Character character) {
         AppDatabase.databaseWriteExecutor.execute(() -> {
             mCharacterDAO.delete(character);
         });
     }
 
-    void deleteAll() {
+    public void deleteAll() {
         AppDatabase.databaseWriteExecutor.execute(() -> {
             mCharacterDAO.deleteAll();
         });
