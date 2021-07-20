@@ -5,9 +5,16 @@
     <string name="character_firstname">Prénom du personnage</string>
     <string name="character_lastname">Nom du personnage</string>
     <string name="character_max_pods">Encombrement maximum</string>
-    <string name="character_submit_button">Encombrement maximum</string>
+    <string name="character_submit_button">Créer le personnage</string>
 
     # Character detail
     <string name="character_details_title">Inventaire</string>
     <string name="character_details_add_tool">Ajouter un objet</string>
+
+    # Tool detail
+    <string name="tool_name">Nom objet</string>
+    <string name="tool_clutter">Encombrement objet</string>
+    <string name="tool_description">Description objet</string>
+    <string name="tool_submit_button">Créer objet</string>
+
 </resources>

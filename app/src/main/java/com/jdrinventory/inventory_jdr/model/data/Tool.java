@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Tool{
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "tool_id")
     public long toolId;
 
     public long characterCreatorId;
@@ -20,7 +21,7 @@ public class Tool{
     @ColumnInfo(name = "clutter")
     public int clutter;
 
-    public Tool(long toolId, long characterCreatorId, String name, String description, int clutter) {
+    public Tool(String name, String description, int clutter) {
         this.toolId = toolId;
         this.characterCreatorId = characterCreatorId;
         this.name = name;
