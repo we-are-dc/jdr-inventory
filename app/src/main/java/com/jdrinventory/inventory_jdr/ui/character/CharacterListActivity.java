@@ -1,27 +1,41 @@
 package com.jdrinventory.inventory_jdr.ui.character;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager.*;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.jdrinventory.inventory_jdr.R;
 import com.jdrinventory.inventory_jdr.model.data.Character;
+import androidx.recyclerview.widget.GridLayoutManager;
 import com.jdrinventory.inventory_jdr.model.repository.CharacterRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CharacterListActivity extends AppCompatActivity {
+    private static final String TAG = "CharacterListActivity";
     private CharacterListViewModel characterListViewModel;
-    private @NonNull LayoutInflater layoutInflater;
+    private ArrayList<String> mCardTitles = new ArrayList<>();
+    private ArrayList<String> mCardReferences = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +48,43 @@ public class CharacterListActivity extends AppCompatActivity {
         this.characterListViewModel = new ViewModelProvider(this)
             .get(CharacterListViewModel.class);
 
-        // LiveData<List<Character>> characters = this.characterListViewModel.
+        initData();
 
-        // Character character = new Character("Jean", "Valjean", 100);
-        // Log.i("meeeeeeeerde", character.getFirstName());
-        // this.characterListViewModel.getDAO().insert(character);
+        Button addButton = findViewById(R.id.character_list_add);
+        addButton.setOnClickListener(
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(
+                        new Intent(CharacterListActivity.this, CharacterAddActivity.class)
+                    );
+                    finish();
+                }
+            }
+        );
+    }
 
-        // Character character2 = this.characterListViewModel.findCharacterByName("Jean", "Valjean");
-        // Log.i("meeeeeeeerde", String.valueOf(character2.getCharacterId()));
+    private void initData() {
+        this.characterListViewModel.addCharacter(new Character("Louis", "Joulain", 100));
+        this.characterListViewModel.addCharacter(new Character("Maxence", "Lebard", 100));
+        this.characterListViewModel.addCharacter(new Character("Sulyan", "Iggui", 100));
+        this.characterListViewModel.addCharacter(new Character("Aurélien", "Devaux", 100));
 
-        // View root = this.layoutInflater.inflate(R.layout.character_list, container, false);
-        // this.character = character;
+        List<Character> characters = this.characterListViewModel.getAllCharacters();
+
+        for (Character character:characters) {
+            Log.i("clickclick", character.getFullname());
+            mCardTitles.add(character.getFullname());
+            mCardReferences.add(String.valueOf(character.getCharacterId()));
+        }
+
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.character_details_recycler_view);
+        CharacterListRecyclerViewAdapter adapter = new CharacterListRecyclerViewAdapter(mCardTitles, mCardReferences, this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
     }
 }

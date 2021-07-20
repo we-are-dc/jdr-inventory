@@ -39,6 +39,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     }
                 }
             )
+            .fallbackToDestructiveMigration()
             .allowMainThreadQueries()
             .build();
     }

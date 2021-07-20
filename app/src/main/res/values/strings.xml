@@ -6,10 +6,18 @@
     <string name="character_lastname">Nom du personnage</string>
     <string name="character_max_pods">Encombrement maximum</string>
     <string name="character_submit_button">Créer le personnage</string>
+    <string name="character_submit_button2">Modifier le personnage</string>
 
     # Character detail
     <string name="character_details_title">Inventaire</string>
     <string name="character_details_add_tool">Ajouter un objet</string>
+    <string name="character_details_edit">Éditer le personnage</string>
+    <string name="character_details_delete">Supprimer le personnage</string>
+
+    # Character list
+    <string name="character_list_view_button">Voir</string>
+    <string name="character_list_edit_button">Modifier</string>
+    <string name="character_list_add">Ajouter un personnage</string>
 
     # Tool detail
     <string name="tool_name">Nom objet</string>

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.character.CharacterDetailsFragment">
+    tools:context=".ui.character.CharacterDetailsActivity">
 
     <TextView
         android:id="@+id/character_details_title"
@@ -69,9 +69,37 @@
         android:layout_marginTop="32dp"
         android:hint="@string/character_details_add_tool"
         android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textColorHint="#fff"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/character_details_pods_current" />
+
+    <Button
+        android:id="@+id/character_details_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/character_details_edit"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textColorHint="#fff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/character_details_add_tool" />
+
+    <Button
+        android:id="@+id/character_details_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/character_details_delete"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textColorHint="#fff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/character_details_edit" />
 
     <FrameLayout
         android:id="@+id/character_details_tmp_tools"

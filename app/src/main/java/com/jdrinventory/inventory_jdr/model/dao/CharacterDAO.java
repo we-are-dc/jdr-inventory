@@ -19,7 +19,7 @@ public interface CharacterDAO {
 
     @Transaction
     @Query("SELECT * FROM Character")
-    LiveData<List<Character>> getAllCharacters();
+    List<Character> getAllCharacters();
 
     @Query("SELECT * FROM Character WHERE character_id IN (:character_ids)")
     LiveData<List<Character>> findCharactersById(long[] character_ids);
@@ -43,5 +43,5 @@ public interface CharacterDAO {
 
     @Transaction
     @Query("SELECT * FROM Character WHERE character_id = :character_id")
-    LiveData<Character> getCharacter(long character_id);
+    Character getCharacter(long character_id);
 }

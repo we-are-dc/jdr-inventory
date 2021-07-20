@@ -16,7 +16,7 @@ public class CharacterAddViewModel extends AndroidViewModel {
         this.mRepository = new CharacterRepository(application);
     }
 
-    public LiveData<Character> getCharacter(long characterId) {
+    public Character getCharacter(long characterId) {
         return mRepository.getCharacter(characterId);
     }
 

@@ -9,18 +9,20 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
-import com.jdrinventory.inventory_jdr.model.data.Character;
 import com.jdrinventory.inventory_jdr.model.data.Tool;
 
 import java.util.List;
 
 @Dao
 public interface ToolDAO {
-    @Query("SELECT * FROM tool")
+    @Query("SELECT * FROM Tool")
     LiveData<List<Tool>> getAllTools();
 
     @Query("SELECT * FROM Tool WHERE tool_id IN (:tool_ids)")
     LiveData<List<Tool>> findToolById(long[] tool_ids);
+
+    @Query("SELECT * FROM Tool WHERE characterCreatorId = :characterId")
+    LiveData<List<Tool>> getToolsForCharacter(long characterId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertMultipleTools(Tool... tools);

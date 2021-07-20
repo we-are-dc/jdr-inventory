@@ -11,14 +11,14 @@ import com.jdrinventory.inventory_jdr.model.data.Character;
 import java.util.List;
 
 public class CharacterRepository {
-    private CharacterDAO mCharacterDAO;
+    public CharacterDAO mCharacterDAO;
 
     public CharacterRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         mCharacterDAO = db.characterDao();
     }
 
-    public LiveData<List<Character>> getAllCharacters() {
+    public List<Character> getAllCharacters() {
         return mCharacterDAO.getAllCharacters();
     }
 
@@ -26,7 +26,7 @@ public class CharacterRepository {
         return mCharacterDAO.findCharactersById(characterIds);
     }
 
-    public LiveData<Character> getCharacter(long characterId) {
+    public Character getCharacter(long characterId) {
         return mCharacterDAO.getCharacter(characterId);
     }
 

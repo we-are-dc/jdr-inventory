@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 
 import com.jdrinventory.inventory_jdr.model.AppDatabase;
 import com.jdrinventory.inventory_jdr.model.dao.ToolDAO;
-import com.jdrinventory.inventory_jdr.model.data.Character;
 import com.jdrinventory.inventory_jdr.model.data.Tool;
 
 import java.util.List;
@@ -28,29 +27,34 @@ public class ToolRepository {
             mToolDAO.insert(tool);
         });
     }
+
+    public LiveData<List<Tool>> getToolsForCharacter(long characterId) {
+        return mToolDAO.getToolsForCharacter(characterId);
+    }
+
     public LiveData<Tool> getTool(long toolId) {
         return mToolDAO.getTool(toolId);
     }
 
-    void insertMultipleTools(Tool... tools) {
+    public void insertMultipleTools(Tool... tools) {
         AppDatabase.databaseWriteExecutor.execute(() -> {
             mToolDAO.insertMultipleTools(tools);
         });
     }
 
-    void update(Tool tool){
+    public void update(Tool tool){
         AppDatabase.databaseWriteExecutor.execute(() -> {
             mToolDAO.update(tool);
         });
     }
 
-    void delete(Tool tool) {
+    public void delete(Tool tool) {
         AppDatabase.databaseWriteExecutor.execute(() -> {
             mToolDAO.delete(tool);
         });
     }
 
-    void deleteAll() {
+    public void deleteAll() {
         AppDatabase.databaseWriteExecutor.execute(() -> {
             mToolDAO.deleteAll();
         });

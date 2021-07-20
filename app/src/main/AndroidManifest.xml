@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Inventory_JDR">
 
         <activity
-            android:name=".ui.tools.ToolsAddActivity"
+            android:name=".ui.character.CharacterListActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,5 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.character.CharacterDetailsActivity" />
+        <activity android:name=".ui.character.CharacterAddActivity" />
+        <activity android:name=".ui.character.CharacterEditActivity" />
+        <activity android:name=".ui.tools.ToolsAddActivity" />
     </application>
 </manifest>

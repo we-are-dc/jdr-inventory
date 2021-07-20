@@ -41,6 +41,10 @@ public class Character {
         return this.lastName;
     }
 
+    public String getFullname() {
+        return this.firstName + " " + this.lastName;
+    }
+
     public int getPodsMax() {
         return this.podsMax;
     }
